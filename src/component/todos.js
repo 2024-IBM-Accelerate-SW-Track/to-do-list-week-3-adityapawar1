@@ -1,6 +1,12 @@
 import React from "react";
 import "../component/todos.css";
-import { Card, Grid, ListItemButton, ListItemText, Checkbox } from "@mui/material";
+import {
+  Card,
+  Grid,
+  ListItemButton,
+  ListItemText,
+  Checkbox,
+} from "@mui/material";
 
 // 1. This component formats and returns the list of todos.
 // 2. Treat the question mark like an if statement.
@@ -10,17 +16,28 @@ import { Card, Grid, ListItemButton, ListItemText, Checkbox } from "@mui/materia
 // 4. Think of lines 14-23 as a loop. For each todo in the todo list, we want to give the list item
 // a key, and it's own card shown in the UI
 const Todos = ({ todos, deleteTodo }) => {
-  let color = "#FFF"
-  let overdueColor = "#FFCCCC"
+  let color = "#FFF";
+  let overdueColor = "#FFCCCC";
 
   const todoList = todos.length ? (
     todos.map((todo) => {
-      const isOverdue = new Date(todo.date) < new Date()
+      const isOverdue = new Date(todo.date) < new Date();
       return (
         <Grid key={todo.id}>
-          <Card data-testid={todo.content} style={{ marginTop: 10, backgroundColor: isOverdue ? overdueColor : color }}>
+          <Card
+            data-testid={todo.content}
+            style={{
+              marginTop: 10,
+              backgroundColor: isOverdue ? overdueColor : color,
+            }}
+          >
             <ListItemButton component="a" href="#simple-list">
-              <Checkbox data-testid={`${todo.content}-delete`} style={{ paddingLeft: 0 }} color="primary" onClick={() => deleteTodo(todo.id)} />
+              <Checkbox
+                data-testid={`${todo.content}-delete`}
+                style={{ paddingLeft: 0 }}
+                color="primary"
+                onClick={() => deleteTodo(todo.id)}
+              />
               <ListItemText primary={todo.content} secondary={todo.date} />
             </ListItemButton>
           </Card>
